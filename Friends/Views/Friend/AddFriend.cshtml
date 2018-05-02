@@ -1,0 +1,31 @@
+﻿@model Friends.Models.FriendModel
+@{
+    ViewBag.Title = "AddFriend";
+}
+
+<h2>AddFriend</h2>
+
+@{Html.BeginForm("AddNewFriend", "Friend");}
+<p>
+    @Html.LabelFor(m => m.Name)<br />
+    @Html.TextBoxFor(m => m.Name)
+    @Html.ValidationMessageFor(m => m.Name)
+</p>
+
+<p>
+    @Html.LabelFor(m => m.Id)<br />
+    @Html.TextBoxFor(m => m.Id, new { type = "number" })
+    @Html.ValidationMessageFor(m => m.Id)
+</p>
+
+<p>
+    @Html.LabelFor(m => m.MestoNaZiveenje)<br />
+    @Html.TextBoxFor(m => m.MestoNaZiveenje)
+    @Html.ValidationMessageFor(m => m.MestoNaZiveenje)
+</p>
+
+<input class = "btn btn-default" type="submit" value="Submit" />
+    
+@{ Html.EndForm();}
+<br />
+@Html.ActionLink("Back", "ShowFriends",null ,new { @class = "btn btn-default" })

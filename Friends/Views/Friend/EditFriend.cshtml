@@ -1,0 +1,33 @@
+﻿@model Friends.Models.FriendModel
+@{
+    ViewBag.Title = "EditFriend";
+}
+
+<h2>EditFriend</h2>
+
+@{ Html.BeginForm("FriendEdited", "Friend");}
+
+@Html.LabelFor(m => m.Id) <br />
+@Html.TextBoxFor(m => m.Id, Model.Id.ToString(), new {type = "number" })
+@Html.ValidationMessageFor(m => m.Id)
+
+<br />
+<br />
+
+@Html.LabelFor(m => m.Name) <br />
+@Html.TextBoxFor(m => m.Name, Model.Name)
+@Html.ValidationMessageFor(m => m.Name)
+
+<br />
+<br />
+
+@Html.LabelFor(m => m.MestoNaZiveenje) <br />
+@Html.TextBoxFor(m => m.MestoNaZiveenje, Model.MestoNaZiveenje)
+@Html.ValidationMessageFor(m => m.MestoNaZiveenje)
+<br />
+<br />
+
+<input class="btn btn-default" type="submit" value="Update" />
+<br /><br />
+@{ Html.EndForm();}
+<a class="btn btn-default" href="~/Friend/ShowFriends">Back</a>
