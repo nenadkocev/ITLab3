@@ -9,14 +9,7 @@ namespace Friends.Controllers
 {
     public class FriendController : Controller
     {
-        private static List<FriendModel> friends = new List<FriendModel>{
-            new FriendModel(0, "Ashley", "England"),
-            new FriendModel(1, "Robert", "Texas"),
-            new FriendModel(2, "Roberta", "Arizona"),
-            new FriendModel(3, "Trpe", "Skopje"),
-            new FriendModel(4, "Nenad", "Kocani"),
-            new FriendModel(5, "Trpe", "Kavadarci")
-        };
+        private FriendsContext friends = new FriendsContext();
 
         private static int friendToEdit;
 
@@ -28,19 +21,20 @@ namespace Friends.Controllers
 
         public ActionResult ShowFriends()
         {
-            return View(friends);
+            return View(friends.Friends.ToList());
         }
 
         public ActionResult DeleteFriend(int id)
         {
-            FriendModel m = friends.Find(f => f.Id == id);
-            friends.Remove(m);
-            return View("ShowFriends", friends);
+            FriendModel m = friends.Friends.FirstOrDefault(f => f.Id == id);
+            friends.Friends.Remove(m);
+            friends.SaveChanges();
+            return View("ShowFriends", friends.Friends.ToList());
         }
 
         public ActionResult EditFriend(int id)
         {
-            FriendModel m = friends.Find(f => f.Id == id);
+            FriendModel m = friends.Friends.FirstOrDefault(f => f.Id == id);
             friendToEdit = id;
             return View(m);
         }
@@ -55,20 +49,22 @@ namespace Friends.Controllers
         {
             if (!ModelState.IsValid)
                 return View("AddFriend");
-            friends.Add(model);
-            return View("ShowFriends", friends);
+            friends.Friends.Add(model);
+            friends.SaveChanges();
+            return View("ShowFriends", friends.Friends.ToList());
         }  
 
         [HttpPost]
         public ActionResult FriendEdited(FriendModel model)
         {
-            FriendModel fr = friends.Find(f => f.Id == friendToEdit);
+            FriendModel fr = friends.Friends.FirstOrDefault(f => f.Id == friendToEdit);
             if (!ModelState.IsValid) {
                 return View("EditFriend", fr);
             }   
-            friends.Remove(fr);
-            friends.Add(model);
-            return View("ShowFriends", friends);
+            friends.Friends.Remove(fr);
+            friends.Friends.Add(model);
+            friends.SaveChanges();
+            return View("ShowFriends", friends.Friends.ToList());
         }
     }
 }

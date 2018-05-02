@@ -44,3 +44,5 @@ C:\Users\Nenad\source\repos\Friends\Friends\bin\EntityFramework.dll
 C:\Users\Nenad\source\repos\Friends\Friends\bin\EntityFramework.SqlServer.dll
 C:\Users\Nenad\source\repos\Friends\Friends\bin\EntityFramework.xml
 C:\Users\Nenad\source\repos\Friends\Friends\bin\EntityFramework.SqlServer.xml
+C:\Users\Nenad\source\repos\Friends\Friends\obj\Debug\Friends.Migrations.first.resources
+C:\Users\Nenad\source\repos\Friends\Friends\obj\Debug\Friends.csproj.GenerateResource.Cache

@@ -153,6 +153,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805021826318_first.cs" />
+    <Compile Include="Migrations\201805021826318_first.Designer.cs">
+      <DependentUpon>201805021826318_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FriendModel.cs" />
     <Compile Include="Models\FriendsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -213,6 +218,11 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805021826318_first.resx">
+      <DependentUpon>201805021826318_first.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
