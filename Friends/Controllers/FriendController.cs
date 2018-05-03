@@ -19,15 +19,21 @@ namespace Friends.Controllers
             return View();
         }
 
-        public ActionResult ShowFriends()
+        public ActionResult ShowFriends(string searchString)
         {
-            return View(friends.Friends.ToList());
+
+            var model = friends.Friends
+                        .Where(friend => String.IsNullOrEmpty(searchString) || friend.Name.Contains(searchString))
+                        .OrderBy(friend => friend.Name);
+
+            return View(model.ToList());
         }
 
         public ActionResult DeleteFriend(int id)
         {
             FriendModel m = friends.Friends.FirstOrDefault(f => f.Id == id);
-            friends.Friends.Remove(m);
+            if(m != null)
+                friends.Friends.Remove(m);
             friends.SaveChanges();
             return View("ShowFriends", friends.Friends.ToList());
         }
@@ -65,6 +71,13 @@ namespace Friends.Controllers
             friends.Friends.Add(model);
             friends.SaveChanges();
             return View("ShowFriends", friends.Friends.ToList());
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (friends != null)
+                friends.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

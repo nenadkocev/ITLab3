@@ -6,26 +6,56 @@
 
 <h2>ShowFriends</h2>
 
-<table>
-    <tr>
-        <td>FriendID</td>
-        <td>Friend Name</td>
-        <td>Place</td>
-        <td></td>
-    </tr>
-    @{ 
+@*@using (Html.BeginForm("ShowFriends", "Friend", FormMethod.Get))
+{
+    @Html.TextBox("searchString")
+    <input type="submit" name="Submit" class="btn btn-default"/>
+}*@
+
+<table id="friendsTable">
+    <thead>
+        <tr>
+            <td>FriendID</td>
+            <td>Friend Name</td>
+            <td>Place</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
         foreach (var friend in Model)
         {
-    <tr>
-        <td>@friend.Id</td>
-        <td>@friend.Name</td>
-        <td>@friend.MestoNaZiveenje</td>
-        <td>
-            @Html.ActionLink("Edit", "EditFriend", new { id = friend.Id }, new { @class = "btn btn-default" })
-            @Html.ActionLink("Delete", "DeleteFriend", new { id = friend.Id }, new { @class = "btn btn-default" })
-        </td>
-    </tr>
-            
-        }
+            <tr>
+                <td>@friend.Id</td>
+                <td>@friend.Name</td>
+                <td>@friend.MestoNaZiveenje</td>
+                <td>
+                    @Html.ActionLink("Edit", "EditFriend", new { id = friend.Id }, new { @class = "btn btn-default" })
+                    <button class="btn btn-default js-delete" friend-id="@friend.Id">Delete</button>
+                    @*@Html.ActionLink("Delete", "DeleteFriend", new { id = friend.Id }, new { @class = "btn btn-default" })*@
+                </td>
+            </tr>
+
     }
+        }
+    </tbody>
+   
 </table>
+
+@section scripts {
+    <script>
+             $(document).ready(function () {
+             var table = $("#friendsTable").DataTable();
+             $("#friendsTable .js-delete").on("click", function () {
+                var button = $(this);
+                $.ajax({
+                    url: "/api/FriendApi/" + button.attr("friend-id"),
+                    method: "DELETE",
+                    success: function () {
+                        table.row(button.parents("tr")).remove().draw();
+                    }
+                });
+            });
+        });
+    </script>
+    }

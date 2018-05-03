@@ -46,3 +46,9 @@ C:\Users\Nenad\source\repos\Friends\Friends\bin\EntityFramework.xml
 C:\Users\Nenad\source\repos\Friends\Friends\bin\EntityFramework.SqlServer.xml
 C:\Users\Nenad\source\repos\Friends\Friends\obj\Debug\Friends.Migrations.first.resources
 C:\Users\Nenad\source\repos\Friends\Friends\obj\Debug\Friends.csproj.GenerateResource.Cache
+C:\Users\Nenad\source\repos\Friends\Friends\bin\System.Net.Http.Formatting.dll
+C:\Users\Nenad\source\repos\Friends\Friends\bin\System.Web.Http.dll
+C:\Users\Nenad\source\repos\Friends\Friends\bin\System.Web.Http.WebHost.dll
+C:\Users\Nenad\source\repos\Friends\Friends\bin\System.Net.Http.Formatting.xml
+C:\Users\Nenad\source\repos\Friends\Friends\bin\System.Web.Http.xml
+C:\Users\Nenad\source\repos\Friends\Friends\bin\System.Web.Http.WebHost.xml
